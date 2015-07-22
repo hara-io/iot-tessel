@@ -1,0 +1,30 @@
+{
+  "name": "iot-tessel",
+  "version": "1.0.0",
+  "description": "Scripts for Tessel's modules",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hara-io/iot-tessel.git"
+  },
+  "keywords": [
+    "tessel",
+    "iot",
+    "ambient",
+    "relay",
+    "node"
+  ],
+  "author": "HARA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hara-io/iot-tessel/issues"
+  },
+  "homepage": "https://github.com/hara-io/iot-tessel#readme",
+  "dependencies": {
+    "ambient-attx4": "^0.2.5",
+    "requestify": "^0.1.17"
+  }
+}
