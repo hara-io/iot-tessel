@@ -26,5 +26,8 @@
   "dependencies": {
     "ambient-attx4": "^0.2.5",
     "requestify": "^0.1.17"
+  },
+  "devDependencies": {
+    "tessel": "^0.3.23"
   }
 }

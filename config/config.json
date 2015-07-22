@@ -1,0 +1,29 @@
+{
+    "development": {
+        "host": "localhost",
+        "port": "3000",
+        "path": "/tessel/ambient/save",
+        "method": "POST",
+		"content-type": "application/x-www-form-urlencoded",
+		"user": "tessel",
+		"password": "tessel123"
+    },
+    "test": {
+        "host": "localhost",
+        "port": "3000",
+        "path": "/tessel/ambient/save",
+        "method": "POST",
+		"content-type": "application/x-www-form-urlencoded",
+		"user": "tessel",
+		"password": "tessel123"
+    },
+    "production": {
+        "host": "localhost",
+        "port": "3000",
+        "path": "/tessel/ambient/save",
+        "method": "POST",
+		"content-type": "application/x-www-form-urlencoded",
+		"user": "tessel",
+		"password": "tessel123"
+    }
+}

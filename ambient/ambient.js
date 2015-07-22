@@ -63,3 +63,5 @@ ambient.on('ready', function () {
 ambient.on('error', function (err) {
   console.log(err)
 });
+
+module.exports = ambient;
