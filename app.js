@@ -1,3 +1,4 @@
-var ambientModule = require('./ambient/ambient');
+var ambient = require('./tessel_modules/ambient');
+var relay = require('./tessel_modules/relay');
 
-console.log(ambientModule);
+ambient.start(0.1, 0.3);
