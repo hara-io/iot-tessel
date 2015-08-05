@@ -2,7 +2,7 @@
   "name": "iot-tessel",
   "version": "1.0.0",
   "description": "Scripts for Tessel's modules",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/hara-io/iot-tessel#readme",
   "dependencies": {
     "ambient-attx4": "^0.2.5",
+    "relay-mono": "^0.1.2",
     "requestify": "^0.1.17"
   },
   "devDependencies": {

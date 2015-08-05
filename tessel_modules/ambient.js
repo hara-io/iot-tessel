@@ -10,10 +10,11 @@ specified light or sound level trigger is met.
 var tessel = require('tessel');
 var ambientlib = require('ambient-attx4');
 var constant = require('../config/constants').ambient;
-var ambient = ambientlib.use(tessel.port[constant.port]);
 
 module.exports = {
   start: function(soundThreshlod, lightThreshlod) {
+
+    var ambient = ambientlib.use(tessel.port[constant.port]);
 
     //On Ready: Wait for the module to connect
     ambient.on('ready', function () {
