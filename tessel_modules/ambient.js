@@ -9,12 +9,14 @@ specified light or sound level trigger is met.
 
 var tessel = require('tessel');
 var ambientlib = require('ambient-attx4');
-var constant = require('../config/constants').ambient;
+var request = require('../helpers/request');
+var config = require('../config/config');
+var querystring = require('querystring');
 
 module.exports = {
   start: function(soundThreshlod, lightThreshlod) {
 
-    var ambient = ambientlib.use(tessel.port[constant.port]);
+    var ambient = ambientlib.use(tessel.port[config.ambient.port]);
 
     //On Ready: Wait for the module to connect
     ambient.on('ready', function () {
@@ -35,6 +37,14 @@ module.exports = {
       ambient.on('light-trigger', function(data) {
         console.log("Our light trigger was hit:", data);
 
+        // Build the post string from an object
+        var post_light_data = querystring.stringify({
+          'type' : 'L',
+          'value': '1.335627',
+          'date': '2015-07-20',
+          'device' : 'f0009a30-00574742-5c6225c2'
+        });
+
         // Clear the trigger so it stops firing
         ambient.clearLightTrigger();
         //After 1.5 seconds reset light trigger
@@ -51,6 +61,14 @@ module.exports = {
 
       ambient.on('sound-trigger', function(data) {
         console.log("Something happened with sound: ", data);
+
+        // Build the post string from an object
+        var post_light_data = querystring.stringify({
+          'type' : 'S',
+          'value': '1.335627',
+          'date': '2015-07-20',
+          'device' : 'f0009a30-00574742-5c6225c2'
+        });
 
         // Clear it
         ambient.clearSoundTrigger();

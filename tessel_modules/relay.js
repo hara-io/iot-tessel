@@ -9,12 +9,12 @@ values to the console upon latching.
 
 var tessel = require('tessel');
 var relaylib = require('relay-mono');
-var constant = require('../config/constants').relay;
+var config = require('../config/config').relay;
 
 module.exports = {
   start: function() {
 
-    var relay = relaylib.use(tessel.port[constant.port]);
+    var relay = relaylib.use(tessel.port[config.port]);
 
     //On Ready: Wait for the module to connect
     relay.on('ready', function relayReady () {

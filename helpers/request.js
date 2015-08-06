@@ -1,34 +1,33 @@
 var http = require('http');
+var config = require('../config/config').request;
 
-// Build the post string from an object
-var post_data = querystring.stringify({
-  'type' : 'S',
-  'value': '1.335627',
-  'date': '2015-07-20',
-  'device' : 'tessel1'
-});
+module.exports = {
+  call: function(path, method, data, callback) {
+    // An object of options to indicate where to post to
+    var options = {
+      host: config.host,
+      port: config.port,
+      path: path,
+      method: method,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        //'Content-Length': data.length,
+    		'Authorization' : config.authorization
+      }
+    };
 
-// An object of options to indicate where to post to
-var post_options = {
-  host: 'localhost',
-  port: '3000',
-  path: '/tessel/ambient/save',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': post_data.length,
-		'Authorization' : 'Basic dmFsZXJpbzp2YWxlcmlvMQ=='
+    // Set up the request
+    var req = http.request(options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', callback);
+    });
+
+    // post the data
+    if(data)
+    {
+      req.write(data);
+    }
+
+    req.end();
   }
-};
-
-// Set up the request
-var post_req = http.request(post_options, function(res) {
-  res.setEncoding('utf8');
-  res.on('data', function (chunk) {
-    console.log('Response: ' + chunk);
-  });
-});
-
-// post the data
-post_req.write(post_data);
-post_req.end();
+}
