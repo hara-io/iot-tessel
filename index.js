@@ -1,26 +1,9 @@
-//var ambient = require('./tessel_modules/ambient');
-//var relay = require('./tessel_modules/relay');
+var ambient = require('./tessel_modules/ambient');
+var relay = require('./tessel_modules/relay');
 var request = require('./helpers/request');
-//var wifi = require('./helpers/wifi');
+var wifi = require('./helpers/wifi');
 var querystring = require('querystring');
 var config = require('./config/config').request;
-
-
-// Build the post string from an object
-var post_light_data = querystring.stringify({
-  'type' : 'L',
-  'value': '1.335627',
-  'date': '2015-07-20',
-  'device' : 'f0009a30-00574742-5c6225c2'
-});
-
-console.log(config.apiSave);
-
-request.call(config.apiSave, 'POST', post_light_data, function(chunk) {
-  console.log(chunk);
-});
-
-/*
 
 //connection wifi
 wifi.connectWifi(function(data){
@@ -49,5 +32,3 @@ wifi.connectWifi(function(data){
   // wifi dropped, probably want to call connect() again
   console.log("Disconnect emitted", data);
 });
-
-*/

@@ -45,6 +45,10 @@ module.exports = {
           'device' : 'f0009a30-00574742-5c6225c2'
         });
 
+        request.call(config.request.apiSave, 'POST', post_light_data, function(chunk) {
+          console.log(chunk);
+        });
+
         // Clear the trigger so it stops firing
         ambient.clearLightTrigger();
         //After 1.5 seconds reset light trigger
@@ -63,11 +67,15 @@ module.exports = {
         console.log("Something happened with sound: ", data);
 
         // Build the post string from an object
-        var post_light_data = querystring.stringify({
+        var post_sound_data = querystring.stringify({
           'type' : 'S',
           'value': '1.335627',
           'date': '2015-07-20',
           'device' : 'f0009a30-00574742-5c6225c2'
+        });
+
+        request.call(config.request.apiSave, 'POST', post_sound_data, function(chunk) {
+          console.log(chunk);
         });
 
         // Clear it
