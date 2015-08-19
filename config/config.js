@@ -6,15 +6,15 @@ var config = {
     port: "B"
   },
   request: {
-    host: 'localhost',
+    host: '',
     port: '3000',
     authorization : 'Basic dGVzc2VsOnRlc3NlbDEyMw==',
     apiList: '/tessel/device/list/',
     apiSave: '/tessel/ambient/save/'
   },
   wifi: {
-    network: '#####',
-    pass: '#####',
+    network: '',
+    pass: '',
     security: 'wpa2'
   }
 };

@@ -23,8 +23,7 @@ module.exports = {
     });
 
     // post the data
-    if(data)
-    {
+    if(data) {
       req.write(data);
     }
 

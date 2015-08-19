@@ -4,6 +4,11 @@ var request = require('./helpers/request');
 var wifi = require('./helpers/wifi');
 var querystring = require('querystring');
 var config = require('./config/config').request;
+var tessel = require('tessel');
+
+var deviceId = tessel.deviceId();
+var deviceRegEx = /(([0-9]|[A-Z]){8}-([0-9]|[A-Z]){8}-([0-9]|[A-Z]){8})/gi;
+var uniqueId = deviceRegEx.exec(deviceId)[0];
 
 //connection wifi
 wifi.connectWifi(function(data){
@@ -11,7 +16,7 @@ wifi.connectWifi(function(data){
   // you're connected
   console.log("Connect emitted", data);
 
-  request.call(config.apiList + 'f0009a30-00574742-5c6225c2', 'GET', '', function(chunk) {
+  request.call(config.apiList + uniqueId, 'GET', '', function(chunk) {
 
     var resp = JSON.parse(chunk);
 
@@ -22,7 +27,7 @@ wifi.connectWifi(function(data){
     console.log('Light threshold: ' + lightThreshold);
 
     //start Ambient module
-    ambient.start(soundThreshold, lightThreshold);
+    ambient.start(soundThreshold, lightThreshold, uniqueId);
 
     //start Relay module
     //relay.start();

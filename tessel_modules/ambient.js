@@ -6,15 +6,15 @@ This ambient module example console.logs
 ambient light and sound levels and whenever a
 specified light or sound level trigger is met.
 *********************************************/
-
 var tessel = require('tessel');
 var ambientlib = require('ambient-attx4');
 var request = require('../helpers/request');
 var config = require('../config/config');
 var querystring = require('querystring');
+var utility = require('../helpers/utility');
 
 module.exports = {
-  start: function(soundThreshlod, lightThreshlod) {
+  start: function(soundThreshlod, lightThreshlod, deviceId) {
 
     var ambient = ambientlib.use(tessel.port[config.ambient.port]);
 
@@ -26,7 +26,7 @@ module.exports = {
           if (err) throw err;
           ambient.getSoundLevel( function(err, sdata) {
             if (err) throw err;
-            console.log("Light level:", ldata.toFixed(8), " ", "Sound Level:", sdata.toFixed(8));
+            //console.log("Light level:", ldata.toFixed(8), " ", "Sound Level:", sdata.toFixed(8));
         });
       })}, 500); // The readings will happen every .5 seconds unless the trigger is hit
 
@@ -40,9 +40,9 @@ module.exports = {
         // Build the post string from an object
         var post_light_data = querystring.stringify({
           'type' : 'L',
-          'value': '1.335627',
-          'date': '2015-07-20',
-          'device' : 'f0009a30-00574742-5c6225c2'
+          'value': data,
+          'date': utility.getNowDate(),
+          'device' : deviceId
         });
 
         request.call(config.request.apiSave, 'POST', post_light_data, function(chunk) {
@@ -69,9 +69,9 @@ module.exports = {
         // Build the post string from an object
         var post_sound_data = querystring.stringify({
           'type' : 'S',
-          'value': '1.335627',
-          'date': '2015-07-20',
-          'device' : 'f0009a30-00574742-5c6225c2'
+          'value': data,
+          'date': utility.getNowDate(),
+          'device' : deviceId
         });
 
         request.call(config.request.apiSave, 'POST', post_sound_data, function(chunk) {
